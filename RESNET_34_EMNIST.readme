@@ -1,0 +1,21 @@
+RESNET-34_EMNIST:
+
+1. Performance Metrics
+
+For 10 iterations -
+
+Training Time : 4532.9946 seconds
+Test Loss : 0.242057
+Test Accuracy : 91.60%
+Precision :0.9215
+Recall : 0.91847
+F1 Score : 0.91638
+
+Observations : 
+
+
+The model took around 4532.9946 seconds (roughly 1.259 hours) to train.
+The model exhibits strong overall performance with high precision, recall, and F1 score, suggesting a good balance between false positives and false negatives.
+The accuracy of 91.60% is also relatively high, indicating the model's capability to make correct predictions on the test data.
+However, the test loss of 0.242057 might suggest there's still room for improvement in minimizing errors in the model's predictions.
+
