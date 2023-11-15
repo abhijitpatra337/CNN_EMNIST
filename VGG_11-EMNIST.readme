@@ -1,0 +1,59 @@
+VGG_11_EMNIST: 
+
+1. Model Details
+
+Input Layer : Accepts grayscale images with the size of 224 x 224 pixels (resized according to VGG11 specifications).
+
+Convolutional Layer 1 : Uses 64 filters, a 3x3 kernel size, and ReLU activation. The padding is set to 1 to maintain the spatial dimensions.
+
+Max Pooling Layer 1 : Performs max pooling with a 2x2 window and stride 2.
+
+Convolutional Layer 2 : Employs 128 filters, a 3x3 kernel size, ReLU activation, and padding of 1.
+
+Max Pooling Layer 2 : Uses a 2x2 window and stride 2 for max pooling.
+
+Convolutional Layers 3 & 4 : Each has 256 filters, a 3x3 kernel size, ReLU activation, and padding of 1.
+
+Max Pooling Layer 3 :Applies max pooling with a 2x2 window and stride 2.
+
+Convolutional Layers 5 & 6 : Each uses 512 filters, a 3x3 kernel size, ReLU activation, and padding of 1.
+
+Max Pooling Layer 4 : Utilizes a 2x2 window and stride 2 for max pooling.
+
+Convolutional Layers 7 & 8 : Both with 512 filters, 3x3 kernel size, ReLU activation, and padding of 1.
+
+Max Pooling Layer 5 : Performs max pooling with a 2x2 window and stride 2.
+
+Fully Connected Layer 1 : Contains 4096 neurons with ReLU activation. Before this layer, the output from the last max pooling layer is flattened into a one-dimensional vector.
+
+Dropout Layer 1 : Randomly drops 50% of the connections to prevent overfitting.
+
+Fully Connected Layer 2 : Comprises 4096 neurons with ReLU activation.
+
+Dropout Layer 2 : Again, drops 50% of the connections for regularization.
+
+Output Layer (Fully Connected Layer 3) : Consists of a number of neurons equal to the number of classes (specified as num_classes, default is 36), designed to produce the final classification output.
+Optimizer - SGD
+Learning Rate - 0.01
+Momentum - 0.9
+Loss Function - CrossEntropyLoss
+
+2. Performance Metrics
+
+For 10 iterations -
+
+Training Time : 6392.64 seconds
+Test Loss : 0.2274
+Test Accuracy : 92.02%
+Precision :0.9238
+Recall : 0.9185
+F1 Score : 0.9172
+
+Observations : 
+
+The model took around 6392.64 seconds (roughly 1.775 hours) to train.
+The model exhibits strong overall performance with high precision, recall, and F1 score, suggesting a good balance between false positives and false negatives.
+The accuracy of 92.024% is also relatively high, indicating the model's capability to make correct predictions on the test data.
+However, the test loss of 0.2274 might suggest there's still room for improvement in minimizing errors in the model's predictions.
+
+
