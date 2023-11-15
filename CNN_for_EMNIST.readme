@@ -1,0 +1,74 @@
+CNN_for_EMNIST:
+
+1. Dataset 
+
+The EMNIST dataset is an extension of the MNIST dataset and includes handwritten characters like letters from A to Z and numbers from 0 to 9. This dataset contains a total of 36 different classes, each representing a specific character or digit.
+It consists of 36 folders, one for each class, and within each folder, there are 2800 grayscale images of that particular character. All these images are handwritten, showcasing different styles of writing for each character.
+Each image is sized at 28x28 pixels with 1 channel, indicating it's in black and white. The dataset has a total of 100,800 samples, considering all the different characters and digits present in the dataset.
+In summary, the dataset contains handwritten characters, totaling 36 classes, with each class having 2800 grayscale images, making it a valuable resource for tasks like character recognition and classification in machine learning.
+
+2. Model Details
+
+Input Layer: Accepts grayscale images with a size of 28x28 pixels.
+Convolutional Layer 1: Utilizes 32 filters, a 3x3 kernel size, and ReLU activation to process the input.
+Batch Normalization Layer 1: Normalizes the output from Convolutional Layer 1.
+Max Pooling Layer 1: Reduces the spatial dimensions by performing max pooling with a 2x2 window.
+Convolutional Layer 2: Employs 64 filters, a 3x3 kernel size, and ReLU activation.
+Max Pooling Layer 2: Reduces dimensions through max pooling with a 2x2 window.
+Convolutional Layer 3: Comprises 128 filters, a 3x3 kernel size, and ReLU activation.
+Batch Normalization Layer 2: Normalizes the output from Convolutional Layer 3.
+Max Pooling Layer 3: Reduces dimensions using max pooling with a 2x2 window.
+Convolutional Layer 4: Involves 256 filters, a 3x3 kernel size, and ReLU activation.
+Max Pooling Layer 4: Reduces dimensions through max pooling with a 2x2 window.
+Fully Connected Layer 1: Contains 512 neurons with ReLU activation. It flattens the output from the previous layer into a one-dimensional vector and applies ReLU to each element.
+Dropout Layer: Randomly drops 50% of the neurons in the fully connected layer to prevent overfitting.
+Output Layer: Comprises 36 neurons, one for each class to produce the output.
+
+Optimizer used - Adam
+Learning Rate - 0.001
+Loss Function - CrossEntropyLoss
+
+
+3. Improvement tools
+
+In the previous model, without the implementation of below improvement tools, we were getting the final test accuracy of 81.34% and also as the epochs progressed, we observed overfitting issues.
+The training loss decreased drastically and the training accuracy shot up, but similar improvements in validation and testing accuracy were not observed during the process of training. 
+
+This implies that the model which we trained has overfitting issues and whenever the model encounters a new set of data apart from training sets, it performs poorly.
+To mitigate these issues, we have introduced Dropout layers after the fully converted layer to prevent overfitting of our model during the training.
+
+Also, to improve the accuracy, we have used batch normalization because normalizing the input data greatly helps the neural network to generalize on new and unseen data. 
+
+ In addition to that, we have implemented the learning rate scheduler to adjust the learning rate; basically in our case we are decreasing the learning rate whenever the loss stops decreasing in the subsequent epochs. This way we are making sure that the scenario of validation loss plateauing or local minima is prevented and whenever  such scenario tends to occur, the scheduler adjusts the learning rate to minimal value, leading to better model performance.
+
+The brief description of all configuration and placement of the various improvement tools has been discussed below:
+
+a. Batch Normalization: In the CNN architecture, we have placed 2 Batch Normalization layers after the convolution layers and before the RELU activation function. Each convolution layer normalizes the output of the previous convolution layer.
+
+b. Dropout : We have added a dropout  of  50% after a fully converted layer, a regularization technique used to prevent overfitting.
+ 
+c. Learning rate scheduler: Learning rate scheduler has been used to adjust the learning rate during the training phase based on the model’s performance. The “min” parameter used in the ReduceLROnPlateau function basically reduces the learning rate whenever local minima situation occurs during the training and validation phases.
+
+So after implementing all the above improvement tools, we were able to achieve a testing accuracy of 91.87% which is quite a jump, and the overfitting issues have also been averted. For further analysis, we have considered the improvised model and the same has been presented in the notebook of part 3.
+
+5. Performance Metrics
+
+For 50 iterations -
+
+Training Time : 6104.84587430954 seconds
+Test Loss : 0.513760535109219
+Test Accuracy : 91.87169312169313%
+Precision : 0.918497801772979
+Recall : 0.9179378731084525
+F1 Score : 0.9180164754193139
+
+Observations : 
+
+The model took around 6104.85 seconds (roughly 1.7 hours) to train.
+The model exhibits strong overall performance with high precision, recall, and F1 score, suggesting a good balance between false positives and false negatives.
+The accuracy of 91.87% is also relatively high, indicating the model's capability to make correct predictions on the test data.
+However, the test loss of 0.51376 might suggest there's still room for improvement in minimizing errors in the model's predictions.
+
+
+
+
